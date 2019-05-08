@@ -15,3 +15,11 @@
  *= require foundation_and_overrides
 
  */
+
+#top-bar a {
+  background-color: #0b1019;
+}
+
+.navBarMargins {
+  margin: 0 15% 0 15%;
+}
