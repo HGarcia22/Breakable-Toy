@@ -15,7 +15,7 @@ class Api::V1::RecipesController < ApplicationController
     response = Unirest.get "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=10&offset=0#{query}",
     headers: {
       "X-RapidAPI-Host" => "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-      "X-RapidAPI-Key" => "3cb8331499mshd5eddeb52d6ac1ap1323fbjsn2e0b8fa008e1"
+      "X-RapidAPI-Key" => "#{ENV[RECIPE_KEY]}"
     }
     render json: response.body
     # binding.pry
@@ -32,7 +32,6 @@ class Api::V1::RecipesController < ApplicationController
     #   {query: params[:query]}
     # end
 end
-# "#{ENV[RECIPE_KEY]}"
 
 
 # You will need to do this basic thing regardless of whether your api call is on the FE or BE
