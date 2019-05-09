@@ -58,8 +58,7 @@ class RecipesIndexContainer extends Component {
     return (
       <div>
         <SearchForm getRecipes={this.getRecipes} />
-
-        <ul class="recipe-tile-li">{recipes}</ul>
+        <div id="recipe-container">{recipes}</div>
       </div>
     );
   }
