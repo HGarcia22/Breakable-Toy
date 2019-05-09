@@ -7,30 +7,33 @@ class SearchForm extends Component {
     this.state = {
       query: ""
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClear = this.handleClear.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleSubmit(event) {
+  handleSubmit = event => {
     event.preventDefault();
     let formPayload = {
       query: this.state.query
     };
     this.props.getRecipes(formPayload);
     this.handleClear(event);
-  }
+  };
 
-  handleChange(event) {
-    console.log(event.target.value);
+  handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-  }
+  };
 
-  handleClear(event) {
+  handleClear = event => {
     event.preventDefault();
     this.setState({
       query: ""
     });
-  }
+  };
+
+  handleKeyDown = event => {
+    //use the rocket above to avoid binding!!!!
+    if (event.nativeEvent.keyCode == 13) {
+      this.handleSubmit(event);
+    }
+  };
 
   render() {
     return (
@@ -40,6 +43,7 @@ class SearchForm extends Component {
           label="Search: "
           name="query"
           onChange={this.handleChange}
+          onKeyDown={this.handleKeyDown}
         />
         <div className="button-group">
           <input

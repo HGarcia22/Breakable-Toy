@@ -23,3 +23,57 @@
 .navBarMargins {
   margin: 0 15% 0 15%;
 }
+
+.recipe-tile-image {
+  text-overflow: ellipses;
+  object-fit: contain;
+  width: 225px;
+  height: 225px;
+}
+
+#recipe-index-container {
+  margin: 0 15% 0 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.recipe-tile-li {
+  vertical-align: middle;
+  display: flex;
+  flex-direction: row;
+  background-color: #0b1019;
+  margin: 20px;
+  text-align: center;
+  border-radius: 0 0 20px 20px;
+  font-variant: small-caps;
+  font-size: 20px;
+}
+
+.recipe-image {
+  float: left;
+  border-radius: 8px;
+}
+
+#recipe-main-image {
+  width: 20%;
+  height: auto;
+  margin-right: 5%;
+  float: left;
+  margin-bottom: 20px;
+}
+
+.recipe-details {
+  padding-left: 10%;
+}
+
+.recipe-details-alignment {
+  vertical-align: text-bottom;
+}
+
+#recipe-name h5 {
+  word-wrap: break-word;
+  text-align: center;
+  color: red;
+  font-weight: 500;
+}

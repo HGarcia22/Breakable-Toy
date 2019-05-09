@@ -7,16 +7,20 @@ class RecipesIndexContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipes: []
+      recipes: [],
+      baseUri: null
     };
     this.getRecipes = this.getRecipes.bind(this);
   }
 
   getRecipes(formPayload) {
+    const body = JSON.stringify({ formPayload });
     fetch("/api/v1/recipes/search", {
       method: "POST",
-      body: JSON.stringify(formPayload),
+      body: body,
+      credentials: "same-origin",
       headers: {
+        Accept: "application/json",
         "Content-Type": "application/json"
       }
     })
@@ -32,16 +36,30 @@ class RecipesIndexContainer extends Component {
       .then(response => response.json())
       .then(body => {
         this.setState({
-          recipes: body.recipes
+          recipes: body.results,
+          baseUri: body.baseUri
         });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
   render() {
+    let recipes = this.state.recipes.map(recipe => {
+      return (
+        <RecipeTile
+          key={recipe.id}
+          id={recipe.id}
+          title={recipe.title}
+          imageUri={this.state.baseUri + recipe.image}
+          readyInMinutes={recipe.readyInMinutes}
+          servings={recipe.servings}
+        />
+      );
+    });
     return (
       <div>
-        <RecipeTile />
         <SearchForm getRecipes={this.getRecipes} />
+
+        <ul class="recipe-tile-li">{recipes}</ul>
       </div>
     );
   }

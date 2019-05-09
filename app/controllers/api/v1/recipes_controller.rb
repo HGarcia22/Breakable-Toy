@@ -1,26 +1,24 @@
-require 'unirest'
-require 'pry'
-
 class Api::V1::RecipesController < ApplicationController
 
   def index
     # binding.pry
   end
 
+  def create
+    # binding.pry
+  end
+
   def search
-    binding.pry
-    # test = JSON.barse(request.body.read)
-    # query = test['query']
-    # if params[:query]
-    #   query = "&query=#{params[:query]}"
-    # end
-    # params['query']
+    if params["formPayload"]
+      query = "&query=#{params["formPayload"].values}"
+    end
     response = Unirest.get "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=10&offset=0#{query}",
     headers: {
       "X-RapidAPI-Host" => "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
       "X-RapidAPI-Key" => "3cb8331499mshd5eddeb52d6ac1ap1323fbjsn2e0b8fa008e1"
     }
     render json: response.body
+    # binding.pry
   end
 
 

@@ -5,9 +5,10 @@ const BodyField = props => {
     <label>
       {props.label}
       <textarea
-        name={props.name}
-        value={props.content}
-        onChange={props.onChange}
+        // name={props.name}
+        // value={props.content}
+        // onChange={props.onChange}
+        {...props}
       />
     </label>
   );
