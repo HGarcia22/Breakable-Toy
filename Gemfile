@@ -22,7 +22,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+gem 'unirest'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -56,3 +56,5 @@ gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise'
 gem 'foundation-rails', '~> 5.0'
 gem 'webpacker', '~> 3.3'
+gem 'haml'
+gem 'ransack'
