@@ -15,20 +15,25 @@ class Api::V1::RecipesController < ApplicationController
     response = Unirest.get "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=10&offset=0#{query}",
     headers: {
       "X-RapidAPI-Host" => "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-      "X-RapidAPI-Key" => "#{ENV[RECIPE_KEY]}"
+      "X-RapidAPI-Key" => ""
     }
     render json: response.body
   end
 
   def show
-    binding.pry
-    recipeId = params["recipeId"]
-    response = Unirest.get "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/#{recipeId}/analyzedInstructions?stepBreakdown=false",
-      headers:{
-        "X-RapidAPI-Host" => "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-        "X-RapidAPI-Key" => "#{ENV[RECIPE_KEY]}"
-      }
+    recipeId = params["id"]
+    response = Unirest.get "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/#{recipeId}/information",
+    headers: {
+    "X-RapidAPI-Host" => "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+    "X-RapidAPI-Key" => ""
+  }
 
+  # serialized = {
+  #   name: response.blah blah ,
+  #   ingredients: { name:
+  #     image
+  #   }
+  # }
       render json: response.body
   end
 

@@ -1,6 +1,8 @@
 class RecipesController < ApplicationController
 def index
-end 
+end
+def show 
+end
 #   before_action :authorize_user, except: [:index, :show]
 #
 #   def index
