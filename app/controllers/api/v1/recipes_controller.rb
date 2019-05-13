@@ -15,7 +15,7 @@ class Api::V1::RecipesController < ApplicationController
     response = Unirest.get "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=10&offset=0#{query}",
     headers: {
       "X-RapidAPI-Host" => "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-      "X-RapidAPI-Key" => ""
+      "X-RapidAPI-Key" => '{ENV[RECIPE_KEY]}'
     }
     render json: response.body
   end
@@ -25,16 +25,18 @@ class Api::V1::RecipesController < ApplicationController
     response = Unirest.get "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/#{recipeId}/information",
     headers: {
     "X-RapidAPI-Host" => "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-    "X-RapidAPI-Key" => ""
+    "X-RapidAPI-Key" => '{ENV[RECIPE_KEY]}'
   }
 
-  # serialized = {
-  #   name: response.blah blah ,
-  #   ingredients: { name:
-  #     image
-  #   }
-  # }
-      render json: response.body
+  showData = {
+    title: response.body["title"],
+    diet: [{"Gluten Free": response.body["glutenFree"]}, {"Vegetarian": response.body["vegetarian"]}, {"Vegan": response.body["vegan"]}, {"Ketogenic": response.body["ketogenic"]}, {"Dairy Free": response.body["dairyFree"]}, {"Whole-30": response.body["whole30"]}],
+    ingredients: response.body["extendedIngredients"],
+    steps: response.body["analyzedInstructions"][0]["steps"],
+    recipeImage: response.body["image"],
+    readyInMinutes: response.body["readyInMinutes"]
+  }
+      render json: showData
   end
 
     # private
@@ -47,7 +49,7 @@ class Api::V1::RecipesController < ApplicationController
     # end
 end
 # "#{ENV[RECIPE_KEY]}"
-
+# {glutenFree: response.body["glutenFree"]}, {vegetarian: response.body["vegetarian"]}, {vegan: response.body["vegan"]}, {ketogenic: response.body["ketogenic"]}, {dairyFree: response.body["dairyFree"]}, {lowFodmap: response.body["lowFodmap"]}, {whole30: response.body["whole30"]}
 
 # You will need to do this basic thing regardless of whether your api call is on the FE or BE
 
