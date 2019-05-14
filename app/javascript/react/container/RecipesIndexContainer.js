@@ -15,6 +15,7 @@ class RecipesIndexContainer extends Component {
 
   getRecipes(formPayload) {
     const body = JSON.stringify({ formPayload });
+    console.log(formPayload);
     fetch("/api/v1/recipes/search", {
       method: "POST",
       body: body,
