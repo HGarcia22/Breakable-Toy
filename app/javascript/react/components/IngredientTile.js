@@ -2,7 +2,7 @@ import React from "react";
 
 const IngredientTile = props => {
   return (
-    <div className="ingredient-name">
+    <div>
       <li>{props.amount}</li>
     </div>
   );

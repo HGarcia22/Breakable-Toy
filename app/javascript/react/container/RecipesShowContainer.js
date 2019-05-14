@@ -31,6 +31,7 @@ class RecipesShowContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
+        debugger;
         this.setState({
           title: body.title,
           recipeImage: body.recipeImage,
@@ -44,7 +45,7 @@ class RecipesShowContainer extends Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
   render() {
-    let diets = this.state.diet.map(preference => {
+    let diets = this.state.diet.map((preference, index) => {
       let dietClassName;
       let diet = Object.keys(preference).join("");
       if (preference[diet] === true) {
@@ -52,16 +53,16 @@ class RecipesShowContainer extends Component {
       } else {
         dietClassName = "cross";
       }
-      return <DietTile key={diet} name={diet} dietClassName={dietClassName} />;
+      return <DietTile key={index} name={diet} dietClassName={dietClassName} />;
     });
-    let steps = this.state.steps.map(step => {
+    let steps = this.state.steps.map((step, index) => {
       let ingredientsImages = [];
       step.ingredients.map(ingredient => {
         ingredientsImages.push(ingredient.image);
       });
       return (
         <StepsTile
-          key={step.number}
+          key={index}
           id={step.number}
           step={step.step}
           ingredientsImages={ingredientsImages}
