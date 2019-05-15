@@ -5,7 +5,7 @@ const StepsTile = props => {
   let ingredients = props.ingredientsImages.map((image, index) => {
     if (image !== undefined) {
       return (
-        <div key={index}>
+        <div key={index + "ingredients"}>
           <img
             src={"https://spoonacular.com/cdn/ingredients_100x100/" + image}
           />

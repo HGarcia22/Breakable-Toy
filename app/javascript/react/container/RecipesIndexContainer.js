@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, IndexRoute, Router, browserHistory } from "react-router";
 import SearchForm from "./SearchForm";
 import RecipeTile from "../components/RecipeTile";
+import recipehub6 from "../../../assets/images/recipehub6.png";
 
 class RecipesIndexContainer extends Component {
   constructor(props) {
@@ -58,7 +59,12 @@ class RecipesIndexContainer extends Component {
     });
     return (
       <div>
-        <SearchForm getRecipes={this.getRecipes} />
+        <div className="spanImage">
+          <img src={recipehub6} alt="recipehub" />
+        </div>
+        <div className="search-form">
+          <SearchForm getRecipes={this.getRecipes} />
+        </div>
         <div id="recipe-container">{recipes}</div>
       </div>
     );

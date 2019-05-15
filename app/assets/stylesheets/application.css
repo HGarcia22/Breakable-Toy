@@ -20,11 +20,38 @@
   background-color: #0b1019;
 }
 
+.top-bar {
+  background-color: #7a7a7a;
+  /* opacity: 0.5; */
+}
+
 .navBarMargins {
   padding: 0 50px 0 50px;
 }
 
+#sign-up {
+  background-color: #fac92a;
+  font-weight: 300;
+  font-size: 14px;
+  color: black;
+  font-family: "Poppins", sans-serif;
+}
+#sign-in {
+  font-weight: 300;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  background-color: #7a7a7a;
+}
+#sign-out {
+  font-weight: 300;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  background-color: #7a7a7a;
+}
+
 .body {
+  font-family: "Poppins", sans-serif;
+  display: grid;
 }
 
 #recipe-main-image {
@@ -40,6 +67,7 @@
   text-align: center;
   color: red;
   font-weight: 500;
+  font-family: "Poppins", sans-serif;
 }
 
 #recipe-container {
@@ -48,6 +76,30 @@
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
+}
+.title-area {
+  display: flex;
+  flex-direction: row;
+}
+
+.logo {
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  display: flex;
+  flex-direction: row;
+}
+
+.logo img {
+  width: 100px;
+  height: 37px;
+  margin-top: 4px;
+}
+
+.app-name {
 }
 
 .recipe-tile {
@@ -67,8 +119,11 @@
 }
 
 .recipe-image img {
+  height: 400px;
+  overflow: hidden;
+  border-radius: 5%;
   width: 100%;
-  height: 100%;
+  height: 75%;
 }
 
 .recipe-details {
@@ -77,18 +132,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #738930;
+  font-family: "Poppins", sans-serif;
 }
 
 .recipe-title {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-/* .recipe-title {
   text-align: center;
-  color: red;
-} */
+  font-size: 17px;
+  font-family: "Poppins", sans-serif;
+}
 
 /* showpage styling  */
 
@@ -107,9 +162,77 @@
   justify-content: center;
   font-size: 15px;
   padding: 0 5px 0 5px;
+  font-family: "Poppins", sans-serif;
 }
 
-.ingredient-image {
+.spanImage img {
+  object-fit: contain;
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
+}
+
+/* radio button */
+.radio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding-bottom: 50px;
+  font-family: "Poppins", sans-serif;
+}
+
+#radio-1 {
+  padding-bottom: 15px;
+}
+#radio-2 {
+  padding-bottom: 15px;
+}
+#radio-3 {
+  padding-bottom: 15px;
+}
+
+.diet-message-1 {
+  color: #484848;
+}
+
+.diet-message-2 {
+  color: #484848;
+}
+
+.dietMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
+  font-family: "Poppins", sans-serif;
+  color: #333333;
+  text-align: center;
+}
+/* search form */
+
+.search-and-button {
+  margin-top: 60px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.searchbox {
+  height: 20px;
+  width: 350px;
+  margin-right: 10px;
+  font-family: "Poppins", sans-serif;
+}
+
+#search-button {
+  background-color: #fac92a;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 12px;
+  padding: 1em;
+  font-family: "Poppins", sans-serif;
 }
 
 /* @import url(https://fonts.googleapis.com/css?family=Roboto:300); */

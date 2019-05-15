@@ -14,7 +14,7 @@ class Api::V1::RecipesController < ApplicationController
       diet = "diet=#{params["formPayload"]["diet"]}&"
     end
 
-    response = Unirest.get "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?#{diet}number=10&offset=0#{query}",
+    response = Unirest.get "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?#{diet}number=12&offset=0#{query}",
     headers: {
       "X-RapidAPI-Host" => "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
       "X-RapidAPI-Key" => "3cb8331499mshd5eddeb52d6ac1ap1323fbjsn2e0b8fa008e1"
@@ -29,10 +29,9 @@ class Api::V1::RecipesController < ApplicationController
     "X-RapidAPI-Host" => "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
     "X-RapidAPI-Key" => "3cb8331499mshd5eddeb52d6ac1ap1323fbjsn2e0b8fa008e1"
   }
-
   showData = {
     title: response.body["title"],
-    diet: [{"Gluten Free": response.body["glutenFree"]}, {"Vegetarian": response.body["vegetarian"]}, {"Vegan": response.body["vegan"]}, {"Ketogenic": response.body["ketogenic"]}, {"Dairy Free": response.body["dairyFree"]}, {"Whole-30": response.body["whole30"]}],
+    diet: [{"Gluten Free": response.body["glutenFree"]}, {"Vegetarian": response.body["vegetarian"]}, {"Vegan": response.body["vegan"]}, {"Ketogenic": response.body["ketogenic"]}, {"Dairy Free": response.body["dairyFree"]}, {"Whole-30": response.body["whole30"]}, {"Very Healthy": response.body["veryHealthy"]}, {"Sustainable": response.body["sustainable"]}],
     ingredients: response.body["extendedIngredients"],
     steps: response.body["analyzedInstructions"][0]["steps"],
     recipeImage: response.body["image"],
