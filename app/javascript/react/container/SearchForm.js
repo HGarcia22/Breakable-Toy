@@ -46,125 +46,104 @@ class SearchForm extends Component {
   render() {
     return (
       <form className="searchForm" onSubmit={this.handleSubmit}>
-        <div className="search-and-button">
-          <TextField
-            content={this.state.query}
-            name="query"
-            onChange={this.handleBodyChange}
-            onKeyDown={this.handleKeyDown}
-            placeholder="I'm in the mood for..."
-          />
-          <div className="button-group">
-            <input
-              id="search-button"
-              className="button"
-              type="submit"
+        <div>
+          <div className="dietMessage">
+            <h2 className="diet-message-1">Search over 300k+ recipes</h2>
+          </div>
+
+          <div className="searchbox">
+            <TextField
+              content={this.state.query}
+              name="query"
+              onChange={this.handleBodyChange}
               onKeyDown={this.handleKeyDown}
-              value="Search"
+              placeholder="I'm in the mood for..."
             />
           </div>
-        </div>
-        <div className="radio-wrapper">
-          <div className="dietMessage">
-            <h3 className="diet-message-1">Looking for something specific?</h3>
-            <p className="diet-message-2">
-              Select one of our optional dietary considerations and click search
-            </p>
-          </div>
           <div className="radio">
-            <div id="radio-1">
-              <input
-                name="diet"
-                id=""
-                type="radio"
-                onChange={this.handleDietChange}
-                onKeyDown={this.handleKeyDown}
-                defaultChecked
-              />
-              <label>
-                <span>None</span>
-              </label>
-              <input
-                name="diet"
-                id="gluten+free"
-                type="radio"
-                onKeyDown={this.handleKeyDown}
-                onChange={this.handleDietChange}
-              />
-              <label>
-                <span>Gluten Free</span>
-              </label>
-              <input
-                name="diet"
-                id="dairy+free"
-                type="radio"
-                onKeyDown={this.handleKeyDown}
-                onChange={this.handleDietChange}
-              />
-              <label>
-                <span>Dairy Free</span>
-              </label>
+            <div className="filter-wrapper">
+              <p className="optional-filters">Optional Filters:</p>
+              <div>
+                <div id="radio-1">
+                  <input
+                    name="diet"
+                    id=""
+                    type="radio"
+                    onChange={this.handleDietChange}
+                    onKeyDown={this.handleKeyDown}
+                    className="big"
+                    defaultChecked
+                  />
+                  <label>
+                    <span className="radio-label">None</span>
+                  </label>
+                  <input
+                    name="diet"
+                    id="gluten+free"
+                    type="radio"
+                    onKeyDown={this.handleKeyDown}
+                    className="big"
+                    onChange={this.handleDietChange}
+                  />
+                  <label>
+                    <span className="radio-label">Gluten Free</span>
+                  </label>
+                  <input
+                    name="diet"
+                    id="dairy+free"
+                    type="radio"
+                    onKeyDown={this.handleKeyDown}
+                    className="big"
+                    onChange={this.handleDietChange}
+                  />
+                  <label>
+                    <span className="radio-label">Dairy Free</span>
+                  </label>
+                </div>
+                <div id="radio-2">
+                  <input
+                    name="diet"
+                    id="vegan"
+                    type="radio"
+                    className="big"
+                    onChange={this.handleDietChange}
+                  />
+                  <label>
+                    <span className="radio-label">Vegan</span>
+                  </label>
+
+                  <input
+                    name="diet"
+                    id="vegetarian"
+                    type="radio"
+                    className="big"
+                    onChange={this.handleDietChange}
+                  />
+                  <label>
+                    <span className="radio-label">Vegetarian</span>
+                  </label>
+                  <input
+                    name="diet"
+                    id="ketogenic"
+                    type="radio"
+                    className="big"
+                    onKeyDown={this.handleKeyDown}
+                    onChange={this.handleDietChange}
+                  />
+                  <label className="radio-label">
+                    <span>Ketogenic</span>
+                  </label>
+                </div>
+              </div>
             </div>
-            <div id="radio-2">
+            <div className="button-group">
               <input
-                name="diet"
-                id="very+healthy"
-                type="radio"
-                onChange={this.handleDietChange}
-              />
-              <label>
-                <span>Very Healthy</span>
-              </label>
-              <input
-                name="diet"
-                id="sustainable"
-                type="radio"
+                id="search-button"
+                className="button"
+                type="submit"
                 onKeyDown={this.handleKeyDown}
-                onChange={this.handleDietChange}
+                value="Search"
               />
-              <label>
-                <span>Sustainable</span>
-              </label>
-              <input
-                name="diet"
-                id="vegan"
-                type="radio"
-                onKeyDown={this.handleKeyDown}
-                onChange={this.handleDietChange}
-              />
-              <label>
-                <span>Vegan</span>
-              </label>
-            </div>
-            <div id="radio-3">
-              <input
-                name="diet"
-                id="vegetarian"
-                type="radio"
-                onChange={this.handleDietChange}
-              />
-              <label>
-                <span>Vegetarian</span>
-              </label>
-              <input
-                name="diet"
-                id="whole30"
-                type="radio"
-                onChange={this.handleDietChange}
-              />
-              <label>
-                <span>Whole30</span>
-              </label>
-              <input
-                name="diet"
-                id="ketogenic"
-                type="radio"
-                onKeyDown={this.handleKeyDown}
-                onChange={this.handleDietChange}
-              />
-              <label>
-                <span>Ketogenic</span>
-              </label>
             </div>
           </div>
         </div>
