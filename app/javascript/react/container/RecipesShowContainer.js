@@ -19,10 +19,11 @@ class RecipesShowContainer extends Component {
     };
     this.favoriteOnClick = this.favoriteOnClick.bind(this);
   }
-  favoriteOnClick() {
-    let recipeId = this.props.params.id;
+  favoriteOnClick(event) {
+    event.preventDefault();
+    const recipeId = this.props.params.id;
     if (this.state.favorited === true) {
-      fetch("/api/v1/recipes/destroy", {
+      fetch(`/api/v1/recipes/${recipeId}`, {
         credentials: "same-origin",
         method: "DELETE",
         body: JSON.stringify(recipeId),
@@ -47,26 +48,34 @@ class RecipesShowContainer extends Component {
         .catch(error => console.error(`Error in fetch: ${error.message}`));
     } else {
       this.setState({ favorited: true });
-      //   fetch("")
-      //     .then(response => {
-      //       if (response.ok) {
-      //         return response;
-      //       } else {
-      //         let errorMessage = `${response.status}(${response.statusText})`,
-      //           error = new Error(errorMessage);
-      //         throw error;
-      //       }
-      //     })
-      //     .then(response => response.json())
-      //     .then(body => {
-      //       this.setState({ favorited: true });
-      //     })
-      //     .catch(error => console.error(`Error in fetch: ${error.message}`));
+      fetch("/api/v1/recipes", {
+        method: "POST",
+        body: recipeId,
+        credentials: "same-origin",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      })
+        .then(response => {
+          if (response.ok) {
+            return response;
+          } else {
+            let errorMessage = `${response.status}(${response.statusText})`,
+              error = new Error(errorMessage);
+            throw error;
+          }
+        })
+        .then(response => response.json())
+        .then(body => {
+          this.setState({ favorited: true });
+        })
+        .catch(error => console.error(`Error in fetch: ${error.message}`));
     }
   }
 
   componentDidMount() {
-    let recipeId = this.props.params.id;
+    const recipeId = this.props.params.id;
     fetch(`/api/v1/recipes/${recipeId}`)
       .then(response => {
         if (response.ok) {
@@ -90,33 +99,10 @@ class RecipesShowContainer extends Component {
           ingredients: body.ingredients,
           favorited: body.favorited
         });
+        let x = this.state.favorited;
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
-  // onFavorite() {
-  //   let body = this.state.id;
-  //   fetch("/favorites", {
-  //     method: "POST",
-  //     body: body,
-  //     credentials: "same-origin",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json"
-  //     }
-  //   })
-  //     .then(response => {
-  //       if (response.ok) {
-  //         return response;
-  //       } else {
-  //         let errorMessage = `${response.status}(${response.statusText})`,
-  //           error = new Error(errorMessage);
-  //         throw error;
-  //       }
-  //     })
-  //     .then(response => response.json())
-  //     .then(body => {})
-  //     .catch(error => console.error(`Error in fetch: ${error.message}`));
-  // }
 
   render() {
     let favoriteClassName;
@@ -178,13 +164,19 @@ class RecipesShowContainer extends Component {
             ❤️
           </div>
         </div>
-        <img
-          src={this.state.recipeImage}
-          onClick={this.onFavorite}
-          alt="recipe-image"
-        />
-        <h5>Ready in {this.state.readyInMinutes} minutes </h5>
-        <ul className="featureList">{diets}</ul>
+        <div className="image-diet">
+          <img
+            src={this.state.recipeImage}
+            onClick={this.onFavorite}
+            alt="recipe-image"
+          />
+          <div className="diet">
+            <ul className="featureList">{diets}</ul>
+          </div>
+        </div>
+        <div className="ready">
+          <h5>Ready in {this.state.readyInMinutes} minutes </h5>
+        </div>
         What you will need:
         {ingredients}
         {steps}
