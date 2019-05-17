@@ -15,7 +15,8 @@ class RecipesShowContainer extends Component {
       diet: [],
       steps: [],
       ingredients: [],
-      favorited: false
+      favorited: false,
+      current_user: null
     };
     this.favoriteOnClick = this.favoriteOnClick.bind(this);
   }
@@ -97,9 +98,10 @@ class RecipesShowContainer extends Component {
           readyInMinutes: body.readyInMinutes,
           diet: body.diet,
           ingredients: body.ingredients,
-          favorited: body.favorited
+          favorited: body.favorited,
+          current_user: body.current_user
         });
-        let x = this.state.favorited;
+        let y = this.state.current_user;
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -111,7 +113,11 @@ class RecipesShowContainer extends Component {
     } else {
       favoriteClassName = "no";
     }
-
+    let steps = this.state.steps.map((step, index) => {
+      return (
+        <StepsTile key={index + "steps"} id={step.number} step={step.step} />
+      );
+    });
     let diets = this.state.diet.map((preference, index) => {
       let dietClassName;
       let diet = Object.keys(preference).join("");
@@ -128,20 +134,6 @@ class RecipesShowContainer extends Component {
         />
       );
     });
-    let steps = this.state.steps.map((step, index) => {
-      let ingredientsImages = [];
-      step.ingredients.map(ingredient => {
-        ingredientsImages.push(ingredient.image);
-      });
-      return (
-        <StepsTile
-          key={index + "steps"}
-          id={step.number}
-          step={step.step}
-          ingredientsImages={ingredientsImages}
-        />
-      );
-    });
     let ingredients = this.state.ingredients.map((ingredient, index) => {
       let url = "https://spoonacular.com/recipeImages/";
       return (
@@ -153,23 +145,24 @@ class RecipesShowContainer extends Component {
         />
       );
     });
-
+    let favoriteButton = "";
+    if (this.state.current_user !== null) {
+      favoriteButton = (
+        <div onClick={this.favoriteOnClick} className={favoriteClassName}>
+          ❤️
+        </div>
+      );
+    }
     return (
       <div className="showContainer">
         <div className="favorite-wrapper">
           <div className="show-title">
-            <h2>{this.state.title}</h2>
+            <h2>How to make {this.state.title}</h2>
           </div>
-          <div onClick={this.favoriteOnClick} className={favoriteClassName}>
-            ❤️
-          </div>
+          {favoriteButton}
         </div>
-        <div className="image-diet">
-          <img
-            src={this.state.recipeImage}
-            onClick={this.onFavorite}
-            alt="recipe-image"
-          />
+        <div className="show-image">
+          <img src={this.state.recipeImage} alt="recipe-image" />
           <div className="diet">
             <ul className="featureList">{diets}</ul>
           </div>
@@ -177,9 +170,14 @@ class RecipesShowContainer extends Component {
         <div className="ready">
           <h5>Ready in {this.state.readyInMinutes} minutes </h5>
         </div>
-        What you will need:
-        {ingredients}
-        {steps}
+        <div className="ingredient-wrapper">
+          <h3 className="what-you-need">What you need:</h3>
+          <div className="show-ingredients">{ingredients}</div>
+        </div>
+        <div className="instructions">
+          <h3 className="instruction-title">Instructions:</h3>
+          <ol className="steps">{steps}</ol>
+        </div>
       </div>
     );
   }

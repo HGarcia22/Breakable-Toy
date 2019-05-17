@@ -57,7 +57,7 @@
   font-weight: 300;
   font-size: 17px;
   font-family: "Montserrat", sans-serif;
-  background-color: #363d2d;
+  background-color: #383f2f;
   opacity: 1;
   color: white;
   /* background: rgba(0, 0, 0, 0.7); */
@@ -68,7 +68,7 @@
   font-size: 17px;
   font-family: "Montserrat", sans-serif;
   opacity: 1;
-  background-color: #4c4c4c;
+  background-color: #383f2f;
 }
 
 .body {
@@ -80,9 +80,6 @@
   opacity: 0.5;
 }
 
-.yes {
-}
-
 .show-title {
   display: flex;
   flex-direction: row;
@@ -92,7 +89,7 @@
 .yes {
   display: flex;
   flex-direction: row;
-  margin-top: 35px;
+  margin-top: 30px;
   margin-left: 25px;
   font-size: 35px;
 }
@@ -167,7 +164,7 @@
   display: flex;
   flex-direction: column;
   align-items: center; */
-  background-image: `url(${recipeImage}) `;
+  /* background-image: `url(${recipeImage}) `; */
   display: flex;
   justify-content: center;
   overflow: hidden;
@@ -209,11 +206,21 @@
   font-size: 17px;
   font-family: "Montserrat", sans-serif;
 }
-.image-diet {
+.show-image {
   display: flex;
   flex-direction: row;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   color: #4c4c4c;
+}
+
+.steps li {
+  margin: 10px;
+  size: 55px;
+  font-size: 20px;
+}
+#amount li {
+  margin: 10px;
+  color: red;
 }
 
 .diet {
@@ -223,24 +230,46 @@
 
 .cross,
 .tick {
-  font-size: 30px;
+  font-size: 25px;
   margin-left: 100px;
+  margin-top: 20px;
 }
+
+/* showpage styling  */
 
 .show-title h2 {
   margin: 30px 0 40px 0;
   color: #4c4c4c;
 }
-/* showpage styling  */
 
-.ready h5 {
-  margin-bottom: 20px;
-  color: #f9c829;
-  font-weight: 350px;
-  font-size: 25px;
+.show-ingredients li {
+  color: #4c4c4c;
+  font-size: 20px;
+}
+.instruction-title {
+  color: #4c4c4c;
+  margin-bottom: 18px;
+}
+.what-you-need {
+  color: #4c4c4c;
+  padding-bottom: 10px;
 }
 
-.ingredient {
+.instructions {
+  margin-top: 55px;
+  margin-right: 110px;
+  color: #4c4c4c;
+}
+
+.ready h5 {
+  margin-bottom: 40px;
+  /* margin-top: 10px; */
+  color: #4c4c4c;
+  font-weight: 300px;
+  font-size: 20px;
+}
+
+/* .ingredient {
   object-fit: contain;
   display: flex;
   flex-direction: row;
@@ -249,7 +278,7 @@
   overflow: hidden;
   padding: 15px;
   margin-top: 15px 20px 0 0;
-}
+} */
 
 .ingredient-name {
   justify-content: center;
@@ -388,5 +417,5 @@
 }
 .featureList li.cross:before {
   content: "\2717";
-  color: crimson;
+  color: #f9c829;
 }

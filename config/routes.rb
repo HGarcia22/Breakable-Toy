@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :recipes, only: [:index, :show]
+  resources :favorites, only: [:index]
 
   namespace :api do
     namespace :v1 do

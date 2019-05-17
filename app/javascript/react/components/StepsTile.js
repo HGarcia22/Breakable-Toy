@@ -2,22 +2,9 @@ import React from "react";
 import { Link } from "react-router";
 
 const StepsTile = props => {
-  let ingredients = props.ingredientsImages.map((image, index) => {
-    if (image !== undefined) {
-      return (
-        <div key={index + "ingredients"}>
-          <img
-            src={"https://spoonacular.com/cdn/ingredients_100x100/" + image}
-          />
-        </div>
-      );
-    }
-  });
-
   return (
     <div>
-      {props.id}. {props.step}
-      {ingredients}
+      <li className="steps">{props.step}</li>
     </div>
   );
 };

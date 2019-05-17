@@ -1,9 +1,5 @@
 class Api::V1::RecipesController < ApplicationController
 protect_from_forgery unless: -> { request.format.json? }
-# before_action :authenticate_user!
-
-  def index
-  end
 
   def create
     recipe_id = params["_json"]
@@ -30,11 +26,13 @@ protect_from_forgery unless: -> { request.format.json? }
   def show
     recipeId = params["id"]
     selected = false
+    if current_user
     current_user.favorites.each do |favorite|
       if favorite.recipe_id == recipeId
         selected = true
       end
     end
+  end
 
     response = Unirest.get "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/#{recipeId}/information",
     headers: {
@@ -48,7 +46,7 @@ protect_from_forgery unless: -> { request.format.json? }
       ingredients: response.body["extendedIngredients"],
       steps: response.body["analyzedInstructions"][0]["steps"],
       recipeImage: response.body["image"],
-      readyInMinutes: response.body["readyInMinutes"], favorited: selected
+      readyInMinutes: response.body["readyInMinutes"], favorited: selected, current_user: current_user
     }
     render json: showData
   end
