@@ -1,5 +1,3 @@
-class Favorite < ApplicationRecord
-  validates :recipe_id, presence: true
+class Recipe < ApplicationRecord
 
-  belongs_to :user 
 end

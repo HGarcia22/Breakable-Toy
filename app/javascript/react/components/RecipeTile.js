@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const RecipeTile = props => {
   return (
-    <div className="recipe-tile">
+    <div id="recipe-tile">
       <div className="recipe-image">
         <Link to={`/recipes/${props.id}`}>
           <img src={props.imageUri} />

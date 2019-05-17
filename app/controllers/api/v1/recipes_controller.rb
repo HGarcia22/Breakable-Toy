@@ -1,9 +1,10 @@
 class Api::V1::RecipesController < ApplicationController
-
-  def index
-  end
+protect_from_forgery unless: -> { request.format.json? }
 
   def create
+    recipe_id = params["_json"]
+    favorite = Favorite.create(user_id: current_user.id, recipe_id: recipe_id, selected: true)
+    render json: {favorited: true}
   end
 
   def search
@@ -24,25 +25,39 @@ class Api::V1::RecipesController < ApplicationController
 
   def show
     recipeId = params["id"]
+    selected = false
+    if current_user
+    current_user.favorites.each do |favorite|
+      if favorite.recipe_id == recipeId
+        selected = true
+      end
+    end
+  end
+
     response = Unirest.get "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/#{recipeId}/information",
     headers: {
     "X-RapidAPI-Host" => "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
     "X-RapidAPI-Key" => "3cb8331499mshd5eddeb52d6ac1ap1323fbjsn2e0b8fa008e1"
-  }
-  showData = {
-    title: response.body["title"],
-    diet: [{"Gluten Free": response.body["glutenFree"]}, {"Vegetarian": response.body["vegetarian"]}, {"Vegan": response.body["vegan"]}, {"Ketogenic": response.body["ketogenic"]}, {"Dairy Free": response.body["dairyFree"]}, {"Whole-30": response.body["whole30"]}, {"Very Healthy": response.body["veryHealthy"]}, {"Sustainable": response.body["sustainable"]}],
-    ingredients: response.body["extendedIngredients"],
-    steps: response.body["analyzedInstructions"][0]["steps"],
-    recipeImage: response.body["image"],
-    readyInMinutes: response.body["readyInMinutes"]
-  }
-      render json: showData
+    }
+
+    showData = {
+      title: response.body["title"],
+      diet: [{"Gluten Free": response.body["glutenFree"]}, {"Vegetarian":   response.body["vegetarian"]}, {"Vegan": response.body["vegan"]}, {"Ketogenic":   response.body["ketogenic"]}, {"Dairy Free": response.body["dairyFree"]}],
+      ingredients: response.body["extendedIngredients"],
+      steps: response.body["analyzedInstructions"][0]["steps"],
+      recipeImage: response.body["image"],
+      readyInMinutes: response.body["readyInMinutes"], favorited: selected, current_user: current_user
+    }
+    render json: showData
+  end
+
+  def destroy
+    recipeId = params["id"]
+    delete_record = current_user.favorites.each do |favorite|
+      if favorite.recipe_id = recipeId
+        favorite.destroy
+      end
+    end
+    render json: {favorited: false}
   end
 end
-
-response = Unirest.get "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?cuisine=italian&number=10&offset=0&query=pasta",
-  headers:{
-    "X-RapidAPI-Host" => "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-    "X-RapidAPI-Key" => "3cb8331499mshd5eddeb52d6ac1ap1323fbjsn2e0b8fa008e1"
-  }

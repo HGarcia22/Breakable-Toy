@@ -3,7 +3,7 @@ import React from "react";
 const IngredientTile = props => {
   return (
     <div>
-      <li>{props.amount}</li>
+      <li id="amount">{props.amount}</li>
     </div>
   );
 };

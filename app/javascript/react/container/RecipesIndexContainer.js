@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route, IndexRoute, Router, browserHistory } from "react-router";
 import SearchForm from "./SearchForm";
 import RecipeTile from "../components/RecipeTile";
-import recipehub6 from "../../../assets/images/recipehub6.png";
+import recipehub8 from "../../../assets/images/recipehub8.png";
 
 class RecipesIndexContainer extends Component {
   constructor(props) {
@@ -15,6 +15,9 @@ class RecipesIndexContainer extends Component {
   }
 
   getRecipes(formPayload) {
+    // let recipeImage = document.getElementbyID("recipe-image");
+    // recipeImage.style.backgroundImage = url(this.props.imageUri);
+
     const body = JSON.stringify({ formPayload });
     console.log(formPayload);
     fetch("/api/v1/recipes/search", {
@@ -60,7 +63,7 @@ class RecipesIndexContainer extends Component {
     return (
       <div>
         <div className="spanImage">
-          <img src={recipehub6} alt="recipehub" />
+          <img src={recipehub8} alt="recipehub" />
         </div>
         <div className="search-form">
           <SearchForm getRecipes={this.getRecipes} />
