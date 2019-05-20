@@ -135,12 +135,10 @@ class RecipesShowContainer extends Component {
       );
     });
     let ingredients = this.state.ingredients.map((ingredient, index) => {
-      let url = "https://spoonacular.com/recipeImages/";
       return (
         <IngredientTile
-          key={ingredient.id + index + "ingredient"}
+          key={ingredient.id + index}
           id={ingredient.id}
-          name={ingredient.name}
           amount={ingredient.originalString}
         />
       );
@@ -148,19 +146,20 @@ class RecipesShowContainer extends Component {
     let favoriteButton = "";
     if (this.state.current_user !== null) {
       favoriteButton = (
-        <div onClick={this.favoriteOnClick} className={favoriteClassName}>
+        <span onClick={this.favoriteOnClick} className={favoriteClassName}>
           ❤️
-        </div>
+        </span>
       );
     }
     return (
       <div className="showContainer">
-        <div className="favorite-wrapper">
-          <div className="show-title">
-            <h2>How to make {this.state.title}</h2>
-          </div>
-          {favoriteButton}
+        <div className="show-title">
+          <h2>
+            How to make {this.state.title}
+            {favoriteButton}
+          </h2>
         </div>
+
         <div className="show-image">
           <img src={this.state.recipeImage} alt="recipe-image" />
           <div className="diet">

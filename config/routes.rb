@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :recipes, only: [:index, :create, :show, :destroy]
+      resources :favorites, only: [:index]
       post 'recipes/search', to: 'recipes#search'
     end
   end
