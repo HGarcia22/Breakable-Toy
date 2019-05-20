@@ -19,7 +19,6 @@ class RecipesIndexContainer extends Component {
     // recipeImage.style.backgroundImage = url(this.props.imageUri);
 
     const body = JSON.stringify({ formPayload });
-    console.log(formPayload);
     fetch("/api/v1/recipes/search", {
       method: "POST",
       body: body,
@@ -56,12 +55,11 @@ class RecipesIndexContainer extends Component {
           title={recipe.title}
           imageUri={this.state.baseUri + recipe.image}
           readyInMinutes={recipe.readyInMinutes}
-          servings={recipe.servings}
         />
       );
     });
     return (
-      <div>
+      <div className="indexContainer">
         <div className="spanImage">
           <img src={recipehub8} alt="recipehub" />
         </div>
