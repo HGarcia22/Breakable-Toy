@@ -101,7 +101,6 @@ class RecipesShowContainer extends Component {
           favorited: body.favorited,
           current_user: body.current_user
         });
-        let y = this.state.current_user;
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
