@@ -33,6 +33,7 @@ protect_from_forgery unless: -> { request.format.json? }
       end
     end
     Favorite.destroy(favorite_delete.id)
+
     render json: {favorited: false}
   end
 
