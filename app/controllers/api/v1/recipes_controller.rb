@@ -1,9 +1,12 @@
 class Api::V1::RecipesController < ApplicationController
 protect_from_forgery unless: -> { request.format.json? }
 
+<<<<<<< HEAD
   def create
   end
 
+=======
+>>>>>>> 7d754a9b53a068d42651307da6461441cc67ce6a
   def search
     if params["formPayload"]["query"] != ""
       query = "&query=#{params["formPayload"]["query"]}"
@@ -38,6 +41,7 @@ protect_from_forgery unless: -> { request.format.json? }
     }
 
     showData = {
+      id: recipeId,
       title: response.body["title"],
       diet: [{"Gluten Free": response.body["glutenFree"]}, {"Vegetarian":   response.body["vegetarian"]}, {"Vegan": response.body["vegan"]}, {"Ketogenic":   response.body["ketogenic"]}, {"Dairy Free": response.body["dairyFree"]}],
       ingredients: response.body["extendedIngredients"],
@@ -47,7 +51,10 @@ protect_from_forgery unless: -> { request.format.json? }
     }
     render json: showData
   end
+<<<<<<< HEAD
 
   def destroy
   end
+=======
+>>>>>>> 7d754a9b53a068d42651307da6461441cc67ce6a
 end
