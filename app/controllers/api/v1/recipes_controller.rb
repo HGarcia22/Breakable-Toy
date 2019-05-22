@@ -2,9 +2,6 @@ class Api::V1::RecipesController < ApplicationController
 protect_from_forgery unless: -> { request.format.json? }
 
   def create
-    recipe_id = params["_json"]
-    favorite = Favorite.create(user_id: current_user.id, recipe_id: recipe_id, selected: true)
-    render json: {favorited: true}
   end
 
   def search
@@ -52,12 +49,5 @@ protect_from_forgery unless: -> { request.format.json? }
   end
 
   def destroy
-    recipeId = params["id"]
-    delete_record = current_user.favorites.each do |favorite|
-      if favorite.recipe_id = recipeId
-        favorite.destroy
-      end
-    end
-    render json: {favorited: false}
   end
 end
