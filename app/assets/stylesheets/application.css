@@ -98,9 +98,9 @@
 .yes {
   display: flex;
   flex-direction: row;
-  margin-top: 5px;
-  margin-left: 25px;
   font-size: 35px;
+  margin-left: 12px;
+  margin-top: -5px;
 }
 
 .myfavorites h2 {
@@ -117,16 +117,12 @@
 }
 
 #favorite-title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   font-size: 22px;
   font-family: "Montserrat", sans-serif;
-  word-wrap: break-word;
-  margin-top: 10px;
+  word-wrap: normal;
+  margin: 10px 858px 40px 5px;
   text-align: center;
   color: #4c4c4c;
-  margin-bottom: 40px;
   padding-bottom: 30px;
 }
 
@@ -195,7 +191,6 @@
   opacity: 1;
 }
 .recipe-tile {
-  height: 600px;
   object-fit: contain;
   display: flex;
   flex-direction: column;
@@ -213,20 +208,7 @@
   margin-right: 52px;
 }
 
-/* .recipe-image {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
-  align-items: flex-end;
-  overflow: hidden;
-} */
-
 .recipe-image img {
-  /* flex-shrink: 0;
-  min-width: 75%;
-  min-height: 75%; */
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -247,6 +229,7 @@
 }
 .recipe-details {
   padding-left: 10%;
+  margin-bottom: 80px;
   vertical-align: text-bottom;
   display: flex;
   flex-direction: column;
@@ -264,7 +247,7 @@
   text-align: center;
   font-size: 22px;
   font-family: "Montserrat", sans-serif;
-  word-wrap: break-word;
+  word-wrap: normal;
   margin-top: 20px;
   justify-content: center;
   margin-right: 25px;
@@ -305,7 +288,7 @@
 }
 
 .show-title h2 {
-  margin: 40px 0 40px 0;
+  margin: 40px 375px 40px 0;
   color: #4c4c4c;
   display: flex;
   flex-direction: row;

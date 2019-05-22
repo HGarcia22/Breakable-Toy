@@ -1,12 +1,6 @@
 class Api::V1::RecipesController < ApplicationController
 protect_from_forgery unless: -> { request.format.json? }
 
-  def create
-    recipe_id = params["_json"]
-    favorite = Favorite.create(user_id: current_user.id, recipe_id: recipe_id, selected: true)
-    render json: {favorited: true}
-  end
-
   def search
     if params["formPayload"]["query"] != ""
       query = "&query=#{params["formPayload"]["query"]}"
@@ -41,6 +35,7 @@ protect_from_forgery unless: -> { request.format.json? }
     }
 
     showData = {
+      id: recipeId,
       title: response.body["title"],
       diet: [{"Gluten Free": response.body["glutenFree"]}, {"Vegetarian":   response.body["vegetarian"]}, {"Vegan": response.body["vegan"]}, {"Ketogenic":   response.body["ketogenic"]}, {"Dairy Free": response.body["dairyFree"]}],
       ingredients: response.body["extendedIngredients"],
@@ -49,15 +44,5 @@ protect_from_forgery unless: -> { request.format.json? }
       readyInMinutes: response.body["readyInMinutes"], favorited: selected, current_user: current_user
     }
     render json: showData
-  end
-
-  def destroy
-    recipeId = params["id"]
-    delete_record = current_user.favorites.each do |favorite|
-      if favorite.recipe_id = recipeId
-        favorite.destroy
-      end
-    end
-    render json: {favorited: false}
   end
 end
