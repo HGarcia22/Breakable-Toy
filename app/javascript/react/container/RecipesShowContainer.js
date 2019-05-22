@@ -24,7 +24,7 @@ class RecipesShowContainer extends Component {
     event.preventDefault();
     const recipeId = this.props.params.id;
     if (this.state.favorited === true) {
-      fetch(`/api/v1/recipes/${recipeId}`, {
+      fetch(`/api/v1/favorites/${recipeId}`, {
         credentials: "same-origin",
         method: "DELETE",
         body: JSON.stringify(recipeId),
@@ -49,9 +49,9 @@ class RecipesShowContainer extends Component {
         .catch(error => console.error(`Error in fetch: ${error.message}`));
     } else {
       this.setState({ favorited: true });
-      fetch("/api/v1/recipes", {
+      fetch("/api/v1/favorites", {
         method: "POST",
-        body: recipeId,
+        body: JSON.stringify(recipeId),
         credentials: "same-origin",
         headers: {
           Accept: "application/json",
@@ -136,7 +136,7 @@ class RecipesShowContainer extends Component {
     let ingredients = this.state.ingredients.map((ingredient, index) => {
       return (
         <IngredientTile
-          key={ingredient.id + index}
+          key={index + "ingredient"}
           id={ingredient.id}
           amount={ingredient.originalString}
         />
@@ -153,14 +153,12 @@ class RecipesShowContainer extends Component {
     return (
       <div className="showContainer">
         <div className="show-title">
-          <h2>
-            How to make {this.state.title}
-            {favoriteButton}
-          </h2>
+          <h2>How to make {this.state.title}</h2>
         </div>
 
         <div className="show-image">
           <img src={this.state.recipeImage} alt="recipe-image" />
+          {favoriteButton}
           <div className="diet">
             <ul className="featureList">{diets}</ul>
           </div>

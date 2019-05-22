@@ -41,10 +41,16 @@ class FavoritesIndexContainer extends Component {
         />
       );
     });
+    let message;
+    if (this.state.favorites[0]) {
+      message = "My Favorites";
+    } else {
+      message = "You do not have any favorites";
+    }
     return (
       <div className="favorite-container">
         <div className="favorite-title-page">
-          <h2>My Favorites</h2>
+          <h2>{message}</h2>
         </div>
         <div>{userFavorites}</div>
       </div>
