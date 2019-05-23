@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Route, IndexRoute, Router, browserHistory } from "react-router";
-// import { ScrollTo } from "react-scroll-to";
-
 import SearchForm from "./SearchForm";
 import RecipeTile from "../components/RecipeTile";
 import recipehub8 from "../../../assets/images/recipehub8.png";
@@ -14,9 +12,14 @@ class RecipesIndexContainer extends Component {
       baseUri: null
     };
     this.getRecipes = this.getRecipes.bind(this);
-    // this.componentDidUpdate = this.componentDidUpdate.bind(this);
   }
-
+  componentDidUpdate() {
+    window.scrollTo({
+      top: 700,
+      left: 0,
+      behavior: "smooth"
+    });
+  }
   getRecipes(formPayload) {
     const body = JSON.stringify({ formPayload });
     fetch("/api/v1/recipes/search", {
@@ -58,7 +61,6 @@ class RecipesIndexContainer extends Component {
         />
       );
     });
-
     return (
       <div className="indexContainer">
         <div className="spanImage">
@@ -68,12 +70,6 @@ class RecipesIndexContainer extends Component {
           <SearchForm getRecipes={this.getRecipes} />
         </div>
         <div id="recipe-container">{recipes}</div>
-        <div
-          style={{ float: "left", clear: "both" }}
-          ref={el => {
-            this.recipes = el;
-          }}
-        />
       </div>
     );
   }
