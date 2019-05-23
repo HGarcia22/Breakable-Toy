@@ -1,6 +1,9 @@
 class Api::V1::RecipesController < ApplicationController
 protect_from_forgery unless: -> { request.format.json? }
 
+  def create
+  end
+
   def search
     if params["formPayload"]["query"] != ""
       query = "&query=#{params["formPayload"]["query"]}"
@@ -44,5 +47,8 @@ protect_from_forgery unless: -> { request.format.json? }
       readyInMinutes: response.body["readyInMinutes"], favorited: selected, current_user: current_user
     }
     render json: showData
+  end
+
+  def destroy
   end
 end
