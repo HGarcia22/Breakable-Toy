@@ -89,11 +89,6 @@
   opacity: 0.5;
 }
 
-/* .show-title {
-  display: flex;
-  flex-direction: row;
-} */
-
 .no,
 .yes {
   display: flex;
@@ -104,7 +99,6 @@
 }
 
 .myfavorites h2 {
-  /* margin: 40px 0 40px 0; */
   color: #4c4c4c;
   display: flex;
   flex-direction: row;
@@ -120,7 +114,7 @@
   font-size: 22px;
   font-family: "Montserrat", sans-serif;
   word-wrap: normal;
-  margin: 10px 858px 40px 5px;
+  margin: 10px 0 40px 5px;
   text-align: center;
   color: #4c4c4c;
   padding-bottom: 30px;
@@ -190,6 +184,7 @@
   margin-top: 4px;
   opacity: 1;
 }
+
 .recipe-tile {
   object-fit: contain;
   display: flex;
@@ -288,7 +283,7 @@
 }
 
 .show-title h2 {
-  margin: 40px 375px 40px 0;
+  margin: 20px 375px 40px 0;
   color: #4c4c4c;
   display: flex;
   flex-direction: row;
