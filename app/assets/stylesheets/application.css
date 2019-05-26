@@ -20,13 +20,6 @@
   background-color: #0b1019;
 }
 
-.flash {
-  position: absolute;
-  margin-top: 305px;
-  width: 100%;
-  text-align: center;
-  color: #fac639;
-}
 .top-bar {
   background-color: black;
   background: rgba(0, 0, 0, 0.7);
@@ -43,6 +36,10 @@
 
 .navBarMargins {
   padding: 0 50px 0 50px;
+}
+.body {
+  font-family: "Montserrat", sans-serif;
+  display: grid;
 }
 
 #sign-up {
@@ -79,11 +76,6 @@
   opacity: 1;
 }
 
-.body {
-  font-family: "Montserrat", sans-serif;
-  display: grid;
-}
-
 .no {
   opacity: 0.5;
 }
@@ -95,6 +87,32 @@
   font-size: 50px;
   color: transparent;
   text-shadow: 0 0 0 #e23d24;
+  z-index: 1;
+  margin-left: -63px;
+  text-align: center;
+  margin-top: 1px;
+}
+
+.plus {
+  height: 20px;
+  width: auto;
+  z-index: 1;
+  margin-left: -41px;
+  margin-top: 39px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  z-index: 0;
+  margin-left: -65px;
+  margin-top: -1px;
+  height: 77px;
+  width: 80px;
+  /* position: relative; */
 }
 
 .myfavorites h2 {
@@ -157,8 +175,6 @@
   margin-top: 800px;
 }
 
-.indexContainer {
-}
 .title-area {
   display: flex;
   flex-direction: row;
@@ -249,6 +265,8 @@
   flex-direction: row;
   margin-bottom: 10px;
   color: #4c4c4c;
+  border-radius: 25px;
+  z-index: -1;
 }
 
 .steps li {

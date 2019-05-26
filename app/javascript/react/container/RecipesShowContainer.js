@@ -3,6 +3,9 @@ import { Route, IndexRoute, Router, browserHistory } from "react-router";
 import { IngredientTiles, StepsTiles, DietTiles } from "../components";
 import { getRecipes, removeFavorite, addFavorite } from "../api";
 
+import plus from "../../../assets/images/plus.png";
+import box from "../../../assets/images/box.png";
+
 class RecipesShowContainer extends Component {
   constructor(props) {
     super(props);
@@ -64,6 +67,8 @@ class RecipesShowContainer extends Component {
               ❤️
             </span>
           ) : null}
+          <img src={box} className="box" alt="box" />
+          <img src={plus} className="plus" alt="plus" />
           <div className="diet">
             <ul className="featureList">
               <DietTiles diet={diet} />
