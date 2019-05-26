@@ -1,9 +1,9 @@
 import React from "react";
 
-const DietTile = props => {
+const DietTile = ({ dietClassName, name }) => {
   return (
     <div>
-      <li className={props.dietClassName}>{props.name}</li>
+      <li className={dietClassName}>{name}</li>
     </div>
   );
 };
