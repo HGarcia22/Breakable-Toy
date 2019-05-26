@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route, IndexRoute, Router, browserHistory } from "react-router";
+
 import SearchForm from "./SearchForm";
 import RecipeTile from "../components/RecipeTile";
 import recipehub8 from "../../../assets/images/recipehub8.png";

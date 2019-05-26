@@ -4,6 +4,8 @@ import IngredientTile from "../components/IngredientTile";
 import StepsTile from "../components/StepsTile";
 import DietTile from "../components/DietTile";
 
+// import ReactToPrint from "react-to-print";
+
 class RecipesShowContainer extends Component {
   constructor(props) {
     super(props);
@@ -174,6 +176,20 @@ class RecipesShowContainer extends Component {
           <h3 className="instruction-title">Instructions:</h3>
           <ol className="steps">{steps}</ol>
         </div>
+      </div>
+    );
+  }
+}
+
+class Example extends React.Component {
+  render() {
+    return (
+      <div>
+        <ReactToPrint
+          trigger={() => <a href="#">Print this out!</a>}
+          content={() => this.componentRef}
+        />
+        <ComponentToPrint ref={el => (this.componentRef = el)} />
       </div>
     );
   }
