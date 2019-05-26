@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { Route, IndexRoute, Router, browserHistory } from "react-router";
-import IngredientTile from "../components/IngredientTile";
-import StepsTile from "../components/StepsTile";
-import DietTile from "../components/DietTile";
-
-// import ReactToPrint from "react-to-print";
+import { IngredientTiles, StepsTiles, DietTiles } from "../components";
+import { getRecipes, removeFavorite, addFavorite } from "../api";
 
 class RecipesShowContainer extends Component {
   constructor(props) {
@@ -23,173 +20,69 @@ class RecipesShowContainer extends Component {
     this.favoriteOnClick = this.favoriteOnClick.bind(this);
   }
   favoriteOnClick(event) {
+    const { id } = this.props.params;
+
     event.preventDefault();
-    const recipeId = this.props.params.id;
     if (this.state.favorited === true) {
-      fetch(`/api/v1/favorites/${recipeId}`, {
-        credentials: "same-origin",
-        method: "DELETE",
-        body: JSON.stringify(recipeId),
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        }
-      })
-        .then(response => {
-          if (response.ok) {
-            return response;
-          } else {
-            let errorMessage = `${response.status}(${response.statusText})`,
-              error = new Error(errorMessage);
-            throw error;
-          }
-        })
-        .then(response => response.json())
-        .then(body => {
-          this.setState({ favorited: false });
-        })
-        .catch(error => console.error(`Error in fetch: ${error.message}`));
+      removeFavorite(id).then(body => this.setState(body));
     } else {
-      this.setState({ favorited: true });
-      fetch("/api/v1/favorites", {
-        method: "POST",
-        body: JSON.stringify(recipeId),
-        credentials: "same-origin",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        }
-      })
-        .then(response => {
-          if (response.ok) {
-            return response;
-          } else {
-            let errorMessage = `${response.status}(${response.statusText})`,
-              error = new Error(errorMessage);
-            throw error;
-          }
-        })
-        .then(response => response.json())
-        .then(body => {
-          this.setState({ favorited: true });
-        })
-        .catch(error => console.error(`Error in fetch: ${error.message}`));
+      addFavorite(id).then(body => this.setState(body));
     }
   }
 
   componentDidMount() {
-    const recipeId = this.props.params.id;
-    fetch(`/api/v1/recipes/${recipeId}`)
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status}(${response.statusText})`,
-            error = new Error(errorMessage);
-          throw error;
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({
-          id: body.id,
-          title: body.title,
-          recipeImage: body.recipeImage,
-          instructions: body.instructions,
-          steps: body.steps,
-          readyInMinutes: body.readyInMinutes,
-          diet: body.diet,
-          ingredients: body.ingredients,
-          favorited: body.favorited,
-          current_user: body.current_user
-        });
-      })
-      .catch(error => console.error(`Error in fetch: ${error.message}`));
+    const { id } = this.props.params;
+    getRecipes(id).then(body => {
+      this.setState(body);
+    });
   }
 
   render() {
-    let favoriteClassName;
-    if (this.state.favorited === true) {
-      favoriteClassName = "yes";
-    } else {
-      favoriteClassName = "no";
-    }
-    let steps = this.state.steps.map((step, index) => {
-      return (
-        <StepsTile key={index + "steps"} id={step.number} step={step.step} />
-      );
-    });
-    let diets = this.state.diet.map((preference, index) => {
-      let dietClassName;
-      let diet = Object.keys(preference).join("");
-      if (preference[diet] === true) {
-        dietClassName = "tick";
-      } else {
-        dietClassName = "cross";
-      }
-      return (
-        <DietTile
-          key={index + "diet"}
-          name={diet}
-          dietClassName={dietClassName}
-        />
-      );
-    });
-    let ingredients = this.state.ingredients.map((ingredient, index) => {
-      return (
-        <IngredientTile
-          key={index + "ingredient"}
-          id={ingredient.id}
-          amount={ingredient.originalString}
-        />
-      );
-    });
-    let favoriteButton = "";
-    if (this.state.current_user !== null) {
-      favoriteButton = (
-        <span onClick={this.favoriteOnClick} className={favoriteClassName}>
-          ❤️
-        </span>
-      );
-    }
+    const {
+      favorited,
+      ingredients,
+      steps,
+      diet,
+      current_user,
+      readyInMinutes,
+      title,
+      recipeImage
+    } = this.state;
+
+    const favoriteClassName = favorited === true ? "yes" : "no";
+
     return (
       <div className="showContainer">
         <div className="show-title">
-          <h2>How to make {this.state.title}</h2>
+          <h2>How to make {title}</h2>
         </div>
 
         <div className="show-image">
-          <img src={this.state.recipeImage} alt="recipe-image" />
-          {favoriteButton}
+          <img src={recipeImage} alt="recipe-image" />
+          {current_user !== null ? (
+            <span onClick={this.favoriteOnClick} className={favoriteClassName}>
+              ❤️
+            </span>
+          ) : null}
           <div className="diet">
-            <ul className="featureList">{diets}</ul>
+            <ul className="featureList">
+              <DietTiles diet={diet} />
+            </ul>
           </div>
         </div>
         <div className="ready">
-          <h5>Ready in {this.state.readyInMinutes} minutes </h5>
+          <h5>Ready in {readyInMinutes} minutes </h5>
         </div>
         <div className="ingredient-wrapper">
           <h3 className="what-you-need">What you need:</h3>
-          <div className="show-ingredients">{ingredients}</div>
+          <IngredientTiles ingredients={ingredients} />
         </div>
         <div className="instructions">
           <h3 className="instruction-title">Instructions:</h3>
-          <ol className="steps">{steps}</ol>
+          <ol>
+            <StepsTiles steps={steps} />
+          </ol>
         </div>
-      </div>
-    );
-  }
-}
-
-class Example extends React.Component {
-  render() {
-    return (
-      <div>
-        <ReactToPrint
-          trigger={() => <a href="#">Print this out!</a>}
-          content={() => this.componentRef}
-        />
-        <ComponentToPrint ref={el => (this.componentRef = el)} />
       </div>
     );
   }

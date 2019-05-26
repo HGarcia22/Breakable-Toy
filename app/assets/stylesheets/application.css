@@ -92,9 +92,9 @@
 .yes {
   display: flex;
   flex-direction: row;
-  font-size: 35px;
-  margin-left: 12px;
-  margin-top: -5px;
+  font-size: 50px;
+  color: transparent;
+  text-shadow: 0 0 0 #e23d24;
 }
 
 .myfavorites h2 {
@@ -292,16 +292,22 @@
 .instruction-title {
   color: #4c4c4c;
   margin-bottom: 18px;
+  margin-top: 30px;
 }
 .what-you-need {
   color: #4c4c4c;
   padding-bottom: 10px;
 }
 
-.instructions {
-  margin-top: 55px;
+.instructions ol {
+  /* margin-top: 55px; */
   margin-right: 110px;
   color: #4c4c4c;
+  font-size: 20px;
+}
+
+.instructions li {
+  padding-bottom: 10px;
 }
 
 .ready h5 {
