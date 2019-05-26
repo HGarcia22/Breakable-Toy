@@ -3472,7 +3472,7 @@ faye-websocket@~0.11.0:
   dependencies:
     websocket-driver ">=0.5.1"
 
-fbjs@^0.8.1, fbjs@^0.8.16, fbjs@^0.8.4, fbjs@^0.8.9:
+fbjs@^0.8.0, fbjs@^0.8.1, fbjs@^0.8.16, fbjs@^0.8.4, fbjs@^0.8.9:
   version "0.8.17"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.17.tgz#c4d598ead6949112653d6588b01a5cdcd9f90fdd"
   integrity sha1-xNWY6taUkRJlPWWIsBpc3Nn5D90=
@@ -7433,7 +7433,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6:
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.6.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -7628,6 +7628,11 @@ react-addons-test-utils@~15.6.2:
   resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-15.6.2.tgz#c12b6efdc2247c10da7b8770d185080a7b047156"
   integrity sha1-wStu/cIkfBDae4dw0YUICnsEcVY=
 
+react-dom@15.0.1:
+  version "15.0.1"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.0.1.tgz#33c67f557b43ab27a6ba3ec3200321681921c48d"
+  integrity sha1-M8Z/VXtDqyemuj7DIAMhaBkhxI0=
+
 react-dom@~15.4.2:
   version "15.4.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.4.2.tgz#015363f05b0a1fd52ae9efdd3a0060d90695208f"
@@ -7642,6 +7647,14 @@ react-is@^16.3.1, react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
   integrity sha512-aUk3bHfZ2bRSVFFbbeVS4i+lNPZr3/WM5jT2J5omUVV1zzcs1nAaf3l51ctA5FFvCRbhrH0bdAsRRQddFJZPtA==
 
+react-print@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/react-print/-/react-print-1.3.1.tgz#dc66e4a279e10edc0cc484169aa9e0e1fb285e12"
+  integrity sha1-3GbkonnhDtwMxIQWmqng4fsoXhI=
+  dependencies:
+    react "15.0.1"
+    react-dom "15.0.1"
+
 react-router@~3.2.0:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-3.2.1.tgz#b9a3279962bdfbe684c8bd0482b81ef288f0f244"
@@ -7654,6 +7667,22 @@ react-router@~3.2.0:
     loose-envify "^1.2.0"
     prop-types "^15.5.6"
     warning "^3.0.0"
+
+react-to-print@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-to-print/-/react-to-print-2.1.2.tgz#6fb30cb79fc90f773dce76d25e2a896efd31b461"
+  integrity sha512-oCbFoqPxIWG2lMigp9RMEp3bw5jU2uAjs3N3EdikfemDraLTFuh+kcXdr4eazmH+734TvpCQ70sgcCOfjmXyRQ==
+  dependencies:
+    prop-types "^15.6.2"
+
+react@15.0.1:
+  version "15.0.1"
+  resolved "https://registry.yarnpkg.com/react/-/react-15.0.1.tgz#262d4f073a384c2a0421afb82d97c8f7df581c09"
+  integrity sha1-Ji1PBzo4TCoEIa+4LZfI999YHAk=
+  dependencies:
+    fbjs "^0.8.0"
+    loose-envify "^1.1.0"
+    object-assign "^4.0.1"
 
 react@~15.4.2:
   version "15.4.2"

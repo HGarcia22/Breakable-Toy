@@ -11,9 +11,6 @@ export const getRecipes = recipeId =>
     })
     .then(response => response.json())
     .then(body => {
-      // if you want to remove keys, you can do
-      // ({ unwantedKey, ...body }) =>
-      // if there is nothing else in the body,
       return body;
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));

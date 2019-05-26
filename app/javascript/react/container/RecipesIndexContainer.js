@@ -63,6 +63,7 @@ class RecipesIndexContainer extends Component {
       );
     });
     return (
+      // { isLoggedIn ? (<div> logged in </div>) : null}
       <div className="indexContainer">
         <div className="spanImage">
           <img src={recipehub8} alt="recipehub" />
