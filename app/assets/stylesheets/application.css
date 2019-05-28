@@ -92,6 +92,7 @@
   text-align: center;
   margin-top: 1px;
   position: absolute;
+  cursor: default;
 }
 
 .plus {
