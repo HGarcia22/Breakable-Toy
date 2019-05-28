@@ -30,7 +30,7 @@
 
 #registration {
   position: absolute;
-  width: 70%;
+  width: 50%;
   margin: 46px 15%;
 }
 
@@ -88,31 +88,34 @@
   color: transparent;
   text-shadow: 0 0 0 #e23d24;
   z-index: 1;
-  margin-left: -63px;
+  margin-left: -54px;
   text-align: center;
   margin-top: 1px;
+  position: absolute;
 }
 
 .plus {
   height: 20px;
   width: auto;
-  z-index: 1;
-  margin-left: -41px;
-  margin-top: 39px;
+  z-index: 2;
+  margin-left: -20px;
+  margin-top: -77px;
   text-align: center;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .box {
   display: flex;
   flex-direction: row;
   z-index: 0;
-  margin-left: -65px;
-  margin-top: -1px;
-  height: 77px;
-  width: 80px;
-  /* position: relative; */
+  margin-left: -59px;
+  margin-right: 10px;
+  margin-top: -2px;
+  height: 70px;
+  width: 110px;
+  position: relative;
 }
 
 .myfavorites h2 {
@@ -266,7 +269,7 @@
   margin-bottom: 10px;
   color: #4c4c4c;
   border-radius: 25px;
-  z-index: -1;
+  z-index: -2;
 }
 
 .steps li {

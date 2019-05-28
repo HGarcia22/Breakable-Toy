@@ -53,7 +53,18 @@ class RecipesShowContainer extends Component {
     } = this.state;
 
     const favoriteClassName = favorited === true ? "yes" : "no";
-
+    let favorite;
+    if (current_user !== null) {
+      favorite = (
+        <div>
+          <span onClick={this.favoriteOnClick} className={favoriteClassName}>
+            ❤️
+          </span>
+          <img src={box} className="box" alt="box" />
+          <img src={plus} className="plus" alt="plus" />
+        </div>
+      );
+    }
     return (
       <div className="showContainer">
         <div className="show-title">
@@ -62,13 +73,7 @@ class RecipesShowContainer extends Component {
 
         <div className="show-image">
           <img src={recipeImage} alt="recipe-image" />
-          {current_user !== null ? (
-            <span onClick={this.favoriteOnClick} className={favoriteClassName}>
-              ❤️
-            </span>
-          ) : null}
-          <img src={box} className="box" alt="box" />
-          <img src={plus} className="plus" alt="plus" />
+          {favorite}
           <div className="diet">
             <ul className="featureList">
               <DietTiles diet={diet} />
